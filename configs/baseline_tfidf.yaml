@@ -1,0 +1,7 @@
+name: tfidf_baseline
+vectorizer: tfidf
+ngram_range: [1, 2]
+min_df: 5
+max_df: 0.95
+max_features: 100000
+normalization: l2

@@ -1,0 +1,39 @@
+# Template only. Update commands after scripts are implemented.
+
+stages:
+  prepare_data:
+    cmd: python -m src.data.prepare_dataset
+    deps:
+      - src/data/prepare_dataset.py
+      - params.yaml
+    outs:
+      - data/processed/
+  build_baselines:
+    cmd: python -m src.features.build_all
+    deps:
+      - src/features/tfidf_features.py
+      - src/features/lsa_features.py
+      - params.yaml
+    outs:
+      - artifacts/vectors/
+  train_word2vec:
+    cmd: python -m src.models.train_word2vec
+    deps:
+      - src/models/train_word2vec.py
+      - params.yaml
+    outs:
+      - artifacts/models/
+  evaluate:
+    cmd: python -m src.evaluation.run_all
+    deps:
+      - src/evaluation/metrics.py
+      - params.yaml
+    outs:
+      - artifacts/metrics/
+  figures:
+    cmd: python -m src.evaluation.latent_space
+    deps:
+      - src/evaluation/latent_space.py
+      - params.yaml
+    outs:
+      - reports/figures/generated/

@@ -1,0 +1,48 @@
+project:
+  name: rep-learning-amazon-reviews
+  random_seed: 42
+
+data:
+  dataset_name: amazon_reviews_2023
+  categories:
+    - Electronics
+    - Home_and_Kitchen
+    - Beauty_and_Personal_Care
+    - Sports_and_Outdoors
+  sample_per_category: 300000
+  split_method: parent_asin
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  min_review_tokens: 5
+  max_review_tokens: 256
+  text_column: text
+  rating_column: rating
+  category_column: main_category
+
+labels:
+  sentiment_map:
+    negative: [1, 2]
+    neutral: [3]
+    positive: [4, 5]
+
+features:
+  tfidf_max_features: 100000
+  tfidf_ngram_range: [1, 2]
+  lsa_components: 300
+
+word2vec:
+  architecture: skipgram
+  vector_size: 300
+  window: 5
+  min_count: 10
+  epochs: 10
+  negative: 10
+  workers: 4
+
+evaluation:
+  primary_metrics:
+    - macro_f1
+    - accuracy
+    - recall_at_10
+    - mrr_at_10

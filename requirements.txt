@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn
+gensim
+matplotlib
+umap-learn
+jupyter
+notebook
+pyyaml
+tqdm
+pytest
+pre-commit
+dvc

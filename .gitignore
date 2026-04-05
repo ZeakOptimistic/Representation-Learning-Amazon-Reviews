@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/raw/*
+data/interim/*
+data/processed/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/README.md
+
+# Artifacts and outputs
+artifacts/models/*
+artifacts/vectors/*
+artifacts/metrics/*
+reports/figures/generated/*
+reports/tables/generated/*
+!artifacts/README.md
+!artifacts/models/.gitkeep
+!artifacts/vectors/.gitkeep
+!artifacts/metrics/.gitkeep
+
+# DVC
+.dvc/cache/
+.dvc/tmp/
+.dvc/config.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

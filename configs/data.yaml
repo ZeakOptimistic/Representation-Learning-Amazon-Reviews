@@ -1,0 +1,11 @@
+dataset_name: amazon_reviews_2023
+selected_categories:
+  - Electronics
+  - Home_and_Kitchen
+  - Beauty_and_Personal_Care
+  - Sports_and_Outdoors
+sample_per_category: 300000
+split_key: parent_asin
+text_field: text
+rating_field: rating
+meta_join_key: parent_asin

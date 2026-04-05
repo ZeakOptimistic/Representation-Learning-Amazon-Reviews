@@ -1,0 +1,4 @@
+name: lsa_baseline
+input_representation: tfidf
+n_components: 300
+normalization: l2

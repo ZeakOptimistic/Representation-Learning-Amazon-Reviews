@@ -98,20 +98,37 @@ def process_data(data_dir="data", n_samples=500000, random_seed=42):
     interim_dir = Path(data_dir) / "interim"
     os.makedirs(interim_dir, exist_ok=True)
     
+    master_colab_file = interim_dir / "amazon_reviews_4cat_2m.parquet"
+    if master_colab_file.exists():
+        logger.info(f"Found master dataset, loading directly: {master_colab_file}")
+        df_master = pd.read_parquet(master_colab_file)
+        # Colab compatibility: rename "category" to "main_category" if needed
+        if "category" in df_master.columns and "main_category" not in df_master.columns:
+            df_master = df_master.rename(columns={"category": "main_category"})
+            
+        # Ensure sentiment is present
+        if "sentiment" not in df_master.columns and "rating" in df_master.columns:
+            def map_sentiment(rating):
+                if rating <= 2:
+                    return 'negative'
+                elif rating == 3:
+                    return 'neutral'
+                else:
+                    return 'positive'
+            df_master['sentiment'] = df_master['rating'].apply(map_sentiment)
+            
+        return df_master
+    
     sampled_dfs = []
     for url in URLS:
         category_name = url.split('/')[-1].replace('.jsonl.gz', '')
-        
-        # 1. Download
-        gz_path = download_file(url, raw_dir)
-        
-        # 2. Sample (skip if already sampled)
-        interim_path = interim_dir / f"{category_name}_sampled_{n_samples}.parquet"
+        interim_path = interim_dir / f"{category_name}_sample_{n_samples}.parquet"
         
         if interim_path.exists():
             logger.info(f"Loading already sampled data for {category_name}")
             df = pd.read_parquet(interim_path)
         else:
+            gz_path = download_file(url, raw_dir)
             df = reservoir_sample_gz(gz_path, n_samples)
             df = clean_and_map(df, category_name)
             df.to_parquet(interim_path)

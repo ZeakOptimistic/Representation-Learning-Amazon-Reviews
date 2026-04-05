@@ -11,3 +11,4 @@ tqdm
 pytest
 pre-commit
 dvc
+pyarrow

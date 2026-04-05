@@ -131,6 +131,7 @@ It must explain:
 ## 7. Execution phases
 
 ### Phase 0 — Scope freeze
+Status: [x] COMPLETED
 Output:
 - confirmed title
 - confirmed categories
@@ -141,6 +142,7 @@ Done when:
 - team agrees not to add another modality
 
 ### Phase 1 — Data readiness
+Status: [x] COMPLETED
 Output:
 - raw files downloaded
 - balanced subset script
@@ -152,6 +154,7 @@ Done when:
 - team can reproduce the same rows and splits from a seed
 
 ### Phase 2 — Baseline features
+Status: [x] COMPLETED
 Output:
 - TF-IDF vectors
 - LSA vectors

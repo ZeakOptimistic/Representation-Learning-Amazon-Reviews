@@ -9,7 +9,7 @@ data:
     - Home_and_Kitchen
     - Beauty_and_Personal_Care
     - Sports_and_Outdoors
-  sample_per_category: 300000
+  sample_per_category: 500000
   split_method: parent_asin
   train_ratio: 0.70
   val_ratio: 0.15

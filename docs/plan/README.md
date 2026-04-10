@@ -8,6 +8,7 @@ This is the control center for project management.
 - `milestones.md`: week-by-week execution plan
 - `risk_register.md`: main project risks and mitigations
 - `decision_log.md`: scope decisions and why they were made
+- `current_status.md`: live status snapshot of completed phases, outputs, and next steps
 
 ## Rule
 

@@ -164,6 +164,7 @@ Done when:
 - baseline numbers exist for both primary tasks
 
 ### Phase 3 — Learned embeddings
+Status: [x] IMPLEMENTED AND VERIFIED (subset run)
 Output:
 - trained Word2Vec model
 - saved document vectors
@@ -173,6 +174,7 @@ Done when:
 - embeddings are saved and queryable
 
 ### Phase 4 — Controlled evaluation
+Status: [x] IMPLEMENTED AND VERIFIED (smoke run)
 Output:
 - unified result table
 - classification metrics

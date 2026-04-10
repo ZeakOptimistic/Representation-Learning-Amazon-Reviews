@@ -5,4 +5,20 @@ window: 5
 min_count: 10
 negative: 10
 epochs: 10
+workers: 4
+seed: 42
+text_column: cleaned_text
+min_review_tokens: 5
+max_review_tokens: 256
+vector_batch_size: 4096
+max_train_rows: null
+max_vector_rows: null
+sanity_words:
+  - battery
+  - charger
+  - kitchen
+  - beauty
+  - sports
+sanity_doc_pool_size: 5000
+sanity_top_k: 5
 document_pooling: mean

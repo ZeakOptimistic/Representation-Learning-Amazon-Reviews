@@ -31,8 +31,8 @@ Use Amazon Reviews 2023.
 
 ### Working subset
 
-- 300,000 reviews per category
-- 1.2M total reviews
+- 500,000 reviews per category
+- 2M total reviews
 - review text + rating + helpful votes + timestamp + verified purchase + parent_asin + main_category
 
 ### Split strategy
@@ -161,6 +161,7 @@ Done when:
 - baseline numbers exist for both primary tasks
 
 ### Phase 3 — Learned embeddings
+Status: [x] IMPLEMENTED AND VERIFIED (subset run)
 Output:
 - trained Word2Vec model
 - saved document vectors
@@ -170,6 +171,7 @@ Done when:
 - embeddings are saved and queryable
 
 ### Phase 4 — Controlled evaluation
+Status: [x] IMPLEMENTED AND VERIFIED (smoke run)
 Output:
 - unified result table
 - classification metrics

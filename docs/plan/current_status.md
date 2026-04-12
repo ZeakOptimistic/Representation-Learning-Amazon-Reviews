@@ -1,10 +1,11 @@
 # Current Project Status
 
-Last updated: 2026-04-10
+Last updated: 2026-04-12
 
 ## Executive summary
 - Notebook 3 (Word2Vec training) is complete in full-run mode.
 - Notebook 4 (controlled evaluation) is complete and exported final tables.
+- Phase 4 currently supports a mixed conclusion: TF-IDF is strongest on classification, Word2Vec is strongest on retrieval, and clustering evidence remains weak.
 - Strict category scope is enforced: Electronics, Home_and_Kitchen, Beauty_and_Personal_Care, Sports_and_Outdoors.
 
 ## Phase checklist
@@ -39,10 +40,11 @@ Last updated: 2026-04-10
 - `reports/tables/tbl_05_phase4_unified_results.csv`
 
 ## Key Phase 4 snapshot
-- Best category classification: TF-IDF (`category_test_macro_f1 = 0.7519`)
+- Best category classification: TF-IDF (`category_test_macro_f1 = 0.7387`)
 - Best sentiment classification: TF-IDF (`sentiment_test_macro_f1 = 0.6664`)
-- Best retrieval: Word2Vec (`mrr_at_10 = 0.6861`)
-- Best clustering (NMI-category): TF-IDF (`nmi_category = 0.0033`)
+- Best retrieval: Word2Vec (`mrr_at_10 = 0.6866`)
+- Best clustering (NMI-category): TF-IDF (`nmi_category = 0.0034`)
+- Interpretation guardrail: Phase 4 does not support a blanket "Word2Vec is better" claim. The evidence supports stronger retrieval utility for Word2Vec, but not stronger classification or clearly superior clustering geometry.
 
 ## Notes on runtime
 - Full Notebook 4 run is expected to be long.

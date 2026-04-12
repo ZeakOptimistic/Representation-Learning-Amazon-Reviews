@@ -216,7 +216,7 @@ To stay controlled, do **not** add these unless core work is done:
 
 ## 9. Final expected contribution
 
-A rigorous, applied demonstration that:
+A rigorous, applied comparison showing that:
 - sparse features remain strong on direct lexical tasks
-- learned embeddings provide better geometry for retrieval and clustering
-- latent-space interpretation explains **why**
+- learned embeddings can improve retrieval utility, while geometry claims must be demonstrated rather than assumed
+- latent-space interpretation explains **why** a representation helps or fails

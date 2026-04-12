@@ -16,6 +16,9 @@ data:
   test_ratio: 0.15
   min_review_tokens: 5
   max_review_tokens: 256
+  # Raw text column in the interim parquet (written by the data extraction
+  # notebook). Downstream scripts read the *cleaned* version via the
+  # `text_column` override in configs/word2vec.yaml ("cleaned_text").
   text_column: text
   rating_column: rating
   category_column: main_category
@@ -46,3 +49,8 @@ evaluation:
     - accuracy
     - recall_at_10
     - mrr_at_10
+  # Retrieval settings — used by src/evaluation/metrics.py and notebooks.
+  retrieval_k: 10
+  retrieval_query_limit: 1000
+  # Clustering settings — n_clusters should match the number of categories.
+  clustering_n_clusters: 4

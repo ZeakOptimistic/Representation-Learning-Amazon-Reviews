@@ -1,15 +1,47 @@
 """TF-IDF feature utilities."""
 
+from __future__ import annotations
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-def build_vectorizer(max_features: int = 100000, ngram_range: tuple[int, int] = (1, 2)) -> TfidfVectorizer:
-    """Return a configured TF-IDF vectorizer."""
+def build_vectorizer(
+    max_features: int = 100_000,
+    ngram_range: tuple[int, int] = (1, 2),
+    min_df: int = 5,
+    max_df: float = 0.95,
+    sublinear_tf: bool = True,
+) -> TfidfVectorizer:
+    """Return a configured TF-IDF vectorizer.
+
+    Parameters
+    ----------
+    max_features:
+        Vocabulary size cap.  Set to ``None`` to keep the full vocabulary.
+    ngram_range:
+        Range of n-gram sizes to include. ``(1, 2)`` means unigrams and bigrams.
+    min_df:
+        Minimum document frequency for a term to be kept.
+    max_df:
+        Maximum document frequency ratio for a term to be kept.
+        Terms that appear in more than this fraction of documents are dropped.
+    sublinear_tf:
+        If ``True`` apply ``1 + log(tf)`` in place of raw term frequency.
+        This dampens the outsized influence of terms that repeat many times
+        in a single long review and consistently improves downstream
+        classification on review-length text.  Defaults to ``True``.
+
+    Returns
+    -------
+    TfidfVectorizer
+        Unfitted scikit-learn vectorizer ready for ``fit_transform``.
+    """
     return TfidfVectorizer(
         max_features=max_features,
         ngram_range=ngram_range,
-        min_df=5,
-        max_df=0.95,
+        min_df=min_df,
+        max_df=max_df,
         strip_accents="unicode",
         lowercase=True,
+        sublinear_tf=sublinear_tf,
     )

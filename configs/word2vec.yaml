@@ -22,3 +22,6 @@ sanity_words:
 sanity_doc_pool_size: 5000
 sanity_top_k: 5
 document_pooling: mean
+# Reject rows from categories outside the four-class scope.
+# Set to false only when debugging with a raw/unfiltered split.
+strict_categories: true

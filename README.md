@@ -17,6 +17,28 @@ By processing a dedicated subset of **2.0 million reviews** across 4 categories 
 
 ---
 
+## 📊 Selected Results
+
+Key performance metrics on the held-out test set:
+
+| Representation | Sentiment F1 | Category F1 | Retrieval MRR@10 | Clustering NMI (category) |
+|----------------|--------------|-------------|------------------|---------------------------|
+| TF-IDF | 0.577 | 0.672 | 0.0171 | 0.0034 |
+| Word2Vec | 0.595 | 0.694 | 0.0249 | 0.0023 |
+| LSA | 0.554 | 0.649 | 0.0128 | 0.0011 |
+
+Latent space analysis (Word2Vec) reveals:
+- **Neighborhood purity**: 55.0% of a review's 10 nearest neighbors share its main category.
+- **Category variation**: Purity ranges from 46.9% (Home & Kitchen) to 59.1% (Beauty & Personal Care).
+- **Outliers**: 35% of top 20 anomalies come from Beauty & Personal Care.
+- **Semantic overlap**: The most similar distinct category centroids are Home & Kitchen and Sports & Outdoors (cosine ≈ 0.997), indicating shared review language.
+- **Interpretive gap**: Neighborhood purity (0.550) exceeds global category classification F1 (0.694), suggesting local neighborhoods are purer than the overall classifier decision boundaries.
+- **UMAP visualization**: Overlapping clusters with no single category dominating; Electronics forms more distinct islands.
+
+See `reports/tables/` for detailed outputs.
+
+---
+
 ## 🗺️ Knowledge & Execution Roadmap
 
 We approach the problem systematically. Each phase of the pipeline is mapped to specific, reproducible Jupyter Notebooks (`notebooks/`) and backed by modular Python source code (`src/`).
@@ -70,23 +92,19 @@ pip install -r requirements.txt
 pip install -e .             # Installs the src package
 ```
 
-### 2. Data Ingestion pipeline
+### 2. Data Processing Pipeline
 
-The data pipeline downloads the files from the UCSD endpoints, performs memory-efficient reservoir sampling, extracts needed columns, and partitions the sets securely.
+Run the notebooks in order to generate features and models:
 
-Open your Jupyter environment and run Notebook 01:
-```text
-notebooks/01_data_audit_and_sampling.ipynb
-```
-*Alternatively, if you run this in Google Colab, export the resulting `.parquet` files and place them into `data/interim/` to proceed.*
+1. `notebooks/00_project_setup.ipynb` (optional – verifies environment and directory structure)
+2. `notebooks/01_data_audit_and_sampling.ipynb` – download, sample, and split the Amazon Reviews 2023 dataset.
+3. `notebooks/02_baseline_tfidf_lsa.ipynb` – generate TF-IDF and LSA feature matrices.
+4. `notebooks/03_train_word2vec.ipynb` – train Word2Vec skip-gram embeddings and produce document vectors.
+5. `notebooks/04_controlled_evaluation.ipynb` – evaluate classification (sentiment, category), retrieval, and clustering metrics on the test set.
+6. `notebooks/05_retrieval_and_clustering.ipynb` – deep dive into nearest-neighbor examples and cluster summaries.
+7. `notebooks/06_latent_space_analysis.ipynb` – latent space interpretation via UMAP, neighborhood purity, outlier detection, and semantic direction analysis.
 
-### 3. Running the baselines
-
-Once the `.parquet` files exist, follow the sequential notebooks to build and evaluate features:
-```text
-notebooks/02_baseline_tfidf_lsa.ipynb
-notebooks/03_train_word2vec.ipynb
-```
+All outputs are saved under `reports/tables/` and `reports/figures/`.
 
 ---
 

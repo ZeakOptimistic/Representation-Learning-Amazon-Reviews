@@ -1,0 +1,6 @@
+1. Neighborhood semantic coherence: 55.0% of a review's 10 nearest neighbors share its main category. This indicates the learned geometry groups reviews by product domain moderately.
+2. Category-specific purity varies: Beauty_and_Personal_Care achieves highest neighborhood purity (59.1%), while Home_and_Kitchen has lowest (46.9%). This suggests some domains are easier to separate in embedding space.
+3. Outliers (top 20 most anomalous) are disproportionately from Beauty_and_Personal_Care (35%), indicating that category's reviews often contain atypical language or cross-domain references.
+4. Most similar category centroids: Home_and_Kitchen & Home_and_Kitchen (cosine similarity = 0.997). This suggests these product domains use similar review language or share common aspects.
+5. Word2Vec category classification macro F1 = 0.672, sentiment F1 = 0.574. Neighborhood purity for category (0.550) is higher than category F1 might suggest, implying that while local neighborhoods are fairly pure, the global classifier struggles to separate all four domains simultaneously.
+6. UMAP projection reveals overlapping clusters; no single category dominates the entire space. Some categories (e.g., Electronics) form distinct islands, while others blend, consistent with the weak clustering NMI (<0.06).

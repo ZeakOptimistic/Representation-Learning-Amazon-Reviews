@@ -185,24 +185,28 @@ Done when:
 - every metric is tied to one config and one split
 
 ### Phase 5 — Interpretation
+Status: [x] COMPLETED
 Output:
-- UMAP plots
-- neighborhood examples
-- failure analysis
-- key insights section for report
+- UMAP plots (tbl_06_word2vec_umap.csv)
+- neighborhood purity (tbl_06_word2vec_purity.csv)
+- outlier inspection (tbl_06_word2vec_outliers.csv)
+- semantic directions (tbl_06_word2vec_category_centroid_sim.csv)
+- key insights (tbl_06_word2vec_insights.txt)
+- cluster summaries (tbl_05_word2vec_cluster_summary.csv)
 
 Done when:
-- at least 5 non-trivial latent-space findings are documented
+- at least 5 non-trivial latent-space findings are documented (achieved: 6 insights)
 
 ### Phase 6 — Delivery
+Status: [ ] IN PROGRESS
 Output:
-- report
-- slides
-- final cleaned repo
-- reproducibility checklist
+- report (draft in progress)
+- slides (pending)
+- final cleaned repo (pending)
+- reproducibility checklist (pending)
 
 Done when:
-- another teammate can clone the repo and understand it in 10 minutes
+- teammate can clone and understand the project within 10 minutes
 
 ## 8. Non-goals
 

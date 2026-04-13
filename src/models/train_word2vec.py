@@ -259,12 +259,26 @@ def export_split_vectors(
     out_path = vectors_dir / f"{cfg.model_name}_{split_name}_vectors.npy"
     meta_path = vectors_dir / f"{cfg.model_name}_{split_name}_meta.parquet"
 
-    vectors = np.lib.format.open_memmap(
-        out_path,
-        mode="w+",
-        dtype=np.float32,
-        shape=(n_rows, cfg.vector_size),
-    )
+    try:
+        vectors = np.lib.format.open_memmap(
+            out_path,
+            mode="w+",
+            dtype=np.float32,
+            shape=(n_rows, cfg.vector_size),
+        )
+    except OSError as e:
+        # On Windows, overwriting a memmap'd file currently open in another
+        # Python process (e.g., a Jupyter kernel running NB04 or NB06) fails
+        # with Errno 13 (Permission) or Errno 22 (Invalid argument).
+        raise RuntimeError(
+            f"\n\n"
+            f"❌ Cannot overwrite {out_path.name} because it is LOCKED by another process.\n"
+            f"This usually happens when another Jupyter Notebook (like 04 or 06) is currently open\n"
+            f"and has the old vectors loaded in memory.\n\n"
+            f"ACTION REQUIRED: Go to your Jupyter interface, shut down all other running kernels,\n"
+            f"and then run this training cell again.\n\n"
+            f"Original OS Error: {e}"
+        ) from e
 
     nonzero_rows = 0
     for start in range(0, n_rows, cfg.vector_batch_size):

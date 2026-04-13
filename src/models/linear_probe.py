@@ -25,10 +25,10 @@ from sklearn.svm import LinearSVC
 def build_logistic_probe(C: float = 1.0, max_iter: int = 2000) -> Pipeline:
     """Return a logistic regression linear probe with standard scaling.
 
-    Uses the ``lbfgs`` solver (sklearn default), which handles multi-class
-    natively via softmax and converges well on dense and scaled sparse inputs.
-    ``n_jobs`` is intentionally omitted — ``lbfgs`` is single-threaded and
-    passing it raises a ``FutureWarning`` in recent sklearn versions.
+    Uses the ``lbfgs`` solver (sklearn default for small-to-medium datasets),
+    which handles multi-class natively via softmax.  For very large feature
+    spaces (>50 k features, 1 M+ samples) consider switching to
+    ``solver='saga'`` and enabling ``n_jobs=-1`` to use all 16 cores.
 
     Parameters
     ----------
@@ -42,7 +42,7 @@ def build_logistic_probe(C: float = 1.0, max_iter: int = 2000) -> Pipeline:
     Returns
     -------
     Pipeline
-        A fitted-ready pipeline: ``StandardScaler → LogisticRegression``.
+        A fitted-ready pipeline: ``StandardScaler -> LogisticRegression``.
     """
     return Pipeline(
         [
@@ -59,13 +59,13 @@ def build_linear_svm_probe(C: float = 0.1, max_iter: int = 2000) -> Pipeline:
     when you need a harder-margin decision boundary.
 
     ``LinearSVC`` is generally faster than ``SVC(kernel='linear')`` and scales
-    well to large feature spaces (TF-IDF with 50k–100k features).
+    well to large feature spaces (TF-IDF with 50k-100k features).
 
     Parameters
     ----------
     C:
         Regularisation parameter.  Smaller values mean stronger regularisation.
-        Default ``0.1`` — slightly tighter than LogisticRegression's ``1.0``
+        Default ``0.1`` -- slightly tighter than LogisticRegression's ``1.0``
         because SVM margins are on a different scale.
     max_iter:
         Maximum iterations for the dual coordinate descent solver.
@@ -73,7 +73,7 @@ def build_linear_svm_probe(C: float = 0.1, max_iter: int = 2000) -> Pipeline:
     Returns
     -------
     Pipeline
-        A fitted-ready pipeline: ``StandardScaler → LinearSVC``.
+        A fitted-ready pipeline: ``StandardScaler -> LinearSVC``.
     """
     return Pipeline(
         [

@@ -39,6 +39,25 @@ See `reports/tables/` for detailed outputs.
 
 ---
 
+## 🏁 Project Status
+
+**Partial completion – Core objectives achieved**
+
+✅ **Completed**
+- Data pipeline producing balanced 2.0M review splits (train/val/test)
+- Baseline evaluation: classification and retrieval metrics for all three representations (TF-IDF, LSA, Word2Vec)
+- Word2Vec deep dive: extended clustering, neighborhood analysis, outlier detection, and semantic direction insights
+- Comprehensive documentation: findings report and reproducibility checklist
+
+⏳ **Pending**
+- TF-IDF and LSA cluster summaries (vectors missing; would require re-running notebook 02)
+- Presentation slides and final repository cleanup
+- Notebook 07 (optional figure generation)
+
+The findings below reflect the completed work. See the full [findings report](docs/report/findings.md) for details.
+
+---
+
 ## 🗺️ Knowledge & Execution Roadmap
 
 We approach the problem systematically. Each phase of the pipeline is mapped to specific, reproducible Jupyter Notebooks (`notebooks/`) and backed by modular Python source code (`src/`).

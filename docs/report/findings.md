@@ -5,6 +5,8 @@ date: 2025-04-13
 
 # Introduction
 
+**Scope note:** This report presents the analysis completed as of 2025-04-13. The evaluation includes classification and retrieval results for all three representations (TF-IDF, LSA, Word2Vec). The latent space deep dive focuses on Word2Vec, with TF-IDF and LSA cluster summaries pending regeneration of missing vector files.
+
 This report summarizes the findings from a rigorous comparison of classical sparse representations (TF-IDF, LSA) against learned dense embeddings (Word2Vec) on the Amazon Reviews 2023 dataset. The core research question: **Do learned dense representations produce more useful geometry than sparse count-based features on a large, practical review-mining dataset?**
 
 We processed a balanced subset of **2.0 million reviews** across 4 categories (Electronics, Home & Kitchen, Beauty & Personal Care, Sports & Outdoors). Representations were evaluated on four tasks: sentiment classification, category classification, nearest-neighbor retrieval, and clustering quality. All splits respected `parent_asin` to prevent data leakage.

@@ -5,12 +5,12 @@ window: 5
 min_count: 10
 negative: 10
 epochs: 10
-workers: 4
+workers: 12           # Intel Core Ultra 9 285H has 16 cores; keep 4 free for OS+Jupyter
 seed: 42
 text_column: cleaned_text
 min_review_tokens: 5
 max_review_tokens: 256
-vector_batch_size: 4096
+vector_batch_size: 16384   # 32 GB DDR5 @ 5600 MT/s — larger batches saturate memory bandwidth
 max_train_rows: null
 max_vector_rows: null
 sanity_words:

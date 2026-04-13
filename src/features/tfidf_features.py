@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
@@ -31,6 +32,18 @@ def build_vectorizer(
         in a single long review and consistently improves downstream
         classification on review-length text.  Defaults to ``True``.
 
+    Notes on parallelism (Intel Core Ultra 9 285H, 16 cores)
+    ---------------------------------------------------------
+    ``TfidfVectorizer`` itself is single-threaded during ``fit_transform``.
+    Parallelism kicks in at the *consumer* level:
+
+    * ``LogisticRegression`` / ``LinearSVC`` inside a ``Pipeline`` will
+      inherit the joblib thread pool — call
+      ``joblib.parallel_config(n_jobs=12)`` in the notebook before the
+      ``fit`` call, or pass ``n_jobs`` directly to the classifier.
+    * Sparse-matrix operations (e.g. ``cosine_similarity`` on a
+      100 k-feature matrix) are multi-threaded via BLAS/MKL automatically.
+
     Returns
     -------
     TfidfVectorizer
@@ -44,4 +57,5 @@ def build_vectorizer(
         strip_accents="unicode",
         lowercase=True,
         sublinear_tf=sublinear_tf,
+        dtype=np.float32,   # halves memory (vs float64) with no quality loss
     )

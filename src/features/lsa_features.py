@@ -25,6 +25,13 @@ def build_lsa(
     random_state:
         Seed for the randomised SVD algorithm.
 
+    Notes on parallelism (Intel Core Ultra 9 285H, 16 cores)
+    ---------------------------------------------------------
+    ``TruncatedSVD`` has no ``n_jobs`` parameter.  However, the heavy work
+    (randomised matrix multiplications) is done by NumPy, which delegates to
+    MKL/OpenBLAS — both of which automatically use all available CPU cores.
+    No extra flags are needed; parallelism is free here.
+
     Returns
     -------
     TruncatedSVD

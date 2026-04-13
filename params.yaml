@@ -41,7 +41,7 @@ word2vec:
   min_count: 10
   epochs: 10
   negative: 10
-  workers: 4
+  workers: 12          # 16-core CPU — leave 4 threads for OS + Jupyter
 
 evaluation:
   primary_metrics:
@@ -51,6 +51,6 @@ evaluation:
     - mrr_at_10
   # Retrieval settings — used by src/evaluation/metrics.py and notebooks.
   retrieval_k: 10
-  retrieval_query_limit: 1000
+  retrieval_query_limit: 3000   # 32 GB RAM allows 3x more query points than default
   # Clustering settings — n_clusters should match the number of categories.
   clustering_n_clusters: 4

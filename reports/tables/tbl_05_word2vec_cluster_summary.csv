@@ -1,0 +1,5 @@
+cluster,size,dominant_category,dominant_category_share,dominant_sentiment,dominant_sentiment_share,top_terms
+0,1199,Home_and_Kitchen,0.274395329441201,positive,0.9274395329441201,"good, quality, price, great, good quality, product, works, nice"
+1,5056,Beauty_and_Personal_Care,0.3344541139240506,positive,0.7501977848101266,"like, hair, don, use, really, doesn, skin, little"
+2,1426,Home_and_Kitchen,0.3169705469845722,positive,0.9670406732117812,"loves, perfect, love, gift, loved, son, great, daughter"
+3,2723,Electronics,0.4454645611457951,positive,0.5358060962174073,"months, broke, stopped, working, usb, stopped working, cable, muy"
